@@ -3,12 +3,17 @@ module.exports = (app, db) => {
 
   // test node backend working
   app.get("/api/ping", myApp.ping);
+  app.get("/api/users", myApp.getAllUsers);
 
-  // // user registration
+  // user registration
   app.post("/api/users/new", myApp.createUser);
 
-  // // user login
+  // user login
   app.post("/api/users/login", myApp.login);
 
-  app.get("/api/users", myApp.getAllUsers);
+  // token authentication
+  app.get("/api/users/auth", myApp.auth);
+
+  // user logout
+  app.get("/api/users/logout", myApp.logout);
 };
