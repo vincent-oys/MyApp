@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(cookieParser());
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 const uri = process.env.MONGODB_URI
 const myClient = new mongo.MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -29,7 +29,7 @@ myClient.connect((err, db) => {
     }
 
     console.log("Connected to DB")
-    //link up to bakerInn_db
+    //link up to myapp db
     let myAppDB = db.db("myapp")
     let modelFuncsObj = modelFuncs(myAppDB)
 
@@ -37,7 +37,6 @@ myClient.connect((err, db) => {
     routes(app, { modelFuncsObj })
 
 })
-
 
 const PORT = process.env.PORT || 5000;
 

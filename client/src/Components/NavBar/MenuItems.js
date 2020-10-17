@@ -1,23 +1,22 @@
 export const MenuItems = [
-    {
-        title: "Test",
-        url: "/Test",
-    },
-    {
-        title: "Home",
-        url: "/Home",
-    },
-    {
-        title: "Journal",
-        url: "/Journal",
-    },
-    {
-        title: "Expense",
-        url: "/Expense",
-    },
-    {
-        title: "Login",
-        url: "/Login",
-    },
-]
-
+  {
+    title: "Test",
+    url: "/test",
+  },
+  {
+    title: "Home",
+    url: "/home",
+  },
+  {
+    title: "Journal",
+    url: "/journal",
+  },
+  {
+    title: "Expense",
+    url: "/expense",
+  },
+  {
+    title: "Login",
+    url: "/login",
+  },
+];

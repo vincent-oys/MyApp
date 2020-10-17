@@ -17,6 +17,7 @@ export default class Test extends React.Component {
     test() {
         fetch("/api/ping")
             .then(res => {
+                console.log(res)
                 if (res.status === 200) {
                     this.setState({
                         message: "Login Success!"
