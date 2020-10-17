@@ -66,10 +66,36 @@ module.exports = (db) => {
     });
   };
 
+  let auth = (request, response) => {
+    let token = request.cookies.token;
+    if (!token) {
+      response.status(401).send("Please login");
+    } else {
+      jwt.verify(token, secret, (err, decoded) => {
+        if (err) {
+          res.status(403).send("Unauthorized");
+        } else {
+          const data = {
+            username: decoded.username,
+            userId: decoded.userId,
+          };
+          response.status(200).send(data);
+        }
+      });
+    }
+  };
+
+  let logout = (request, response) => {
+    response.clearCookie("token");
+    response.status(200).send("Logout");
+  };
+
   return {
     ping,
     getAllUsers,
     createUser,
     login,
+    auth,
+    logout,
   };
 };

@@ -5,7 +5,7 @@ export const MenuItems = [
   },
   {
     title: "Home",
-    url: "/home",
+    url: "/",
   },
   {
     title: "Journal",
@@ -14,9 +14,5 @@ export const MenuItems = [
   {
     title: "Expense",
     url: "/expense",
-  },
-  {
-    title: "Login",
-    url: "/login",
   },
 ];
