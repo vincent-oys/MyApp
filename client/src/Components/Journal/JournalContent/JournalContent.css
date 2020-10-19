@@ -1,0 +1,20 @@
+.content-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  height: 100%;
+}
+
+.journal-content {
+  width: 70vw;
+  border: blue solid 1px;
+  position: relative;
+  right: 0;
+}
+
+.journal-menu {
+  width: 30vw;
+  border: red solid 1px;
+  position: relative;
+  left: 0;
+}
