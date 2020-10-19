@@ -4,10 +4,6 @@ import "../Journal/JournalContent/JournalContent.css";
 import JournalMenu from "../Journal/JournalMenu/JournalMenu";
 
 class Journal extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     let { journalData, userId } = this.props;
     journalData = journalData.reverse();

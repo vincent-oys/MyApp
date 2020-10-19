@@ -227,6 +227,7 @@ class App extends React.Component {
                   userId={this.state.userId}
                   getSingleJournal={this.getSingleJournal}
                   singleJournal={this.state.singleJournal}
+                  refreshJournal={this.refreshJournal}
                 />
               )}
             />
