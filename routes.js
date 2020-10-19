@@ -16,4 +16,19 @@ module.exports = (app, db) => {
 
   // user logout
   app.get("/api/users/logout", myApp.logout);
+
+  // add journal
+  app.post("/api/journal/:userid/add", myApp.addJournal);
+
+  // edit journal
+  app.put("/api/journal/:journalid/edit", myApp.editJournal);
+
+  // delete journal
+  app.delete("/api/journal/:journalid/delete", myApp.deleteJournal);
+
+  // get single journal
+  app.get("/api/journal/:journalid", myApp.getSingleJournal);
+
+  // // get all journal
+  app.get("/api/journal/:userid/summary", myApp.getAllJournal);
 };

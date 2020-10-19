@@ -32,7 +32,7 @@ module.exports = (db) => {
       } else {
         const payload = {
           username: res.username,
-          userId: res.id,
+          userId: res._id,
         };
         const token = jwt.sign(payload, secret);
         response.cookie("token", token).send("Register & Token Created");
@@ -90,6 +90,65 @@ module.exports = (db) => {
     response.status(200).send("Logout");
   };
 
+  let addJournal = (request, response) => {
+    let newJournal = request.body;
+    let userId = request.params.userid;
+    newJournal.userId = userId;
+
+    modelFuncs.addNewJournal(newJournal, userId, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.send("New Journal Added");
+      }
+    });
+  };
+
+  let editJournal = (request, response) => {
+    let journalId = request.params.journalid;
+    let updatedInfo = request.body;
+    modelFuncs.updateJournal(updatedInfo, journalId, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.send("Updated Journal");
+      }
+    });
+  };
+
+  let deleteJournal = (request, response) => {
+    let journalId = request.params.journalid;
+    modelFuncs.deleteJournal(journalId, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.send("Journal Deleted");
+      }
+    });
+  };
+
+  let getSingleJournal = (request, response) => {
+    let journalId = request.params.journalid;
+    modelFuncs.getSingleJournal(journalId, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.send(res);
+      }
+    });
+  };
+
+  let getAllJournal = (request, response) => {
+    let userId = request.params.userid;
+    modelFuncs.getAllJournal(userId, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.send(res);
+      }
+    });
+  };
+
   return {
     ping,
     getAllUsers,
@@ -97,5 +156,10 @@ module.exports = (db) => {
     login,
     auth,
     logout,
+    addJournal,
+    editJournal,
+    deleteJournal,
+    getSingleJournal,
+    getAllJournal,
   };
 };

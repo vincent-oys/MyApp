@@ -36,6 +36,7 @@ module.exports = (db) => {
             let hashedData = {
               username: userInfo.username,
               password: hash,
+              journal: [],
             };
             db.collection("users")
               .insertOne(hashedData)
@@ -89,9 +90,115 @@ module.exports = (db) => {
     }
   };
 
+  let addNewJournal = (newJournal, userId, callback) => {
+    db.collection("journal")
+      .insertOne(newJournal)
+      .then((res) => {
+        db.collection("users")
+          .updateOne(
+            { _id: ObjectId(userId) },
+            { $push: { journal: res.insertedId } }
+          )
+          .then((res2) => {
+            console.log("res2", res2);
+            callback(null, res2);
+          })
+          .catch((err2) => {
+            console.log("err2", err2);
+            callback(err, null);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(err, null);
+      });
+  };
+
+  let updateJournal = (updatedInfo, journalId, callback) => {
+    db.collection("journal")
+      .updateOne({ _id: ObjectId(journalId) }, { $set: updatedInfo })
+      .then((res) => {
+        console.log(res);
+        callback(null, res);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(err, null);
+      });
+  };
+
+  let deleteJournal = (journalId, callback) => {
+    db.collection("users")
+      .updateMany(
+        {},
+        { $pull: { journal: ObjectId(journalId) } },
+        { multi: true }
+      )
+      .then((res) => {
+        db.collection("journal")
+          .deleteOne({ _id: ObjectId(journalId) })
+          .then((res) => {
+            callback(null, res);
+          })
+          .catch((err) => {
+            callback(err, null);
+          });
+      })
+      .catch((err) => {
+        callback(err, null);
+      });
+  };
+
+  let getSingleJournal = (journalId, callback) => {
+    db.collection("journal")
+      .findOne({ _id: ObjectId(journalId) })
+      .then((res) => {
+        console.log(res);
+        callback(null, res);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(err, null);
+      });
+  };
+
+  let getAllJournal = async (userId, callback) => {
+    db.collection("users")
+      .findOne({ _id: ObjectId(userId) })
+      .then((res) => {
+        let journalsId = res.journal;
+        let allQueries = [];
+
+        if (journalsId) {
+          journalsId.forEach((id) => {
+            allQueries.push(
+              db
+                .collection("journal")
+                .findOne({ _id: ObjectId(id) })
+                .then((res) => {
+                  return res;
+                })
+                .catch((err) => console.log(err))
+            );
+          });
+        }
+        return Promise.all(allQueries);
+      })
+      .then((res1) => {
+        console.log(res1);
+        callback(null, res1);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return {
     getAllUsers,
     createNewUser,
     userLogin,
+    addNewJournal,
+    updateJournal,
+    deleteJournal,
+    getSingleJournal,
+    getAllJournal,
   };
 };

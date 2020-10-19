@@ -11,10 +11,8 @@ class NavBar extends React.Component {
 
   buttonOnClick() {
     if (this.props.loggedInStatus === "LOGGED_IN") {
-      console.log("WTF?");
       this.props.handleLogout();
     } else {
-      console.log("NANDAYO!");
       this.props.history.push("/login");
     }
   }
@@ -46,7 +44,6 @@ class NavBar extends React.Component {
                 onClick={(e) => {
                   e.preventDefault();
                   this.buttonOnClick();
-                  console.log("IT CLICKED");
                 }}
               >
                 {buttonName}

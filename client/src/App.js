@@ -19,7 +19,8 @@ class App extends React.Component {
     super();
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {},
+      username: "",
+      userId: "",
     };
 
     this.handleLogin = this.handleLogin.bind(this);
@@ -31,17 +32,19 @@ class App extends React.Component {
     axios
       .get(url, { withCredentials: true })
       .then((res) => {
-        console.log(res);
+        console.log("FROM APP.JS", res.data);
         this.setState({
           loggedInStatus: "LOGGED_IN",
-          user: res.data,
+          username: res.data.username,
+          userId: res.data.userId,
         });
       })
       .catch((err) => {
         console.log(err.response);
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
-          user: {},
+          username: "",
+          userId: "",
         });
       });
   }
@@ -65,6 +68,7 @@ class App extends React.Component {
         })
       )
       .catch((err) => console.log(err));
+    this.props.history.push("/");
   }
 
   render() {
@@ -78,6 +82,7 @@ class App extends React.Component {
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   handleLogout={this.handleLogout}
+                  username={this.state.username}
                 />
               )}
             />
@@ -108,6 +113,8 @@ class App extends React.Component {
                   <Journal
                     {...props}
                     loggedInStatus={this.state.loggedInStatus}
+                    username={this.state.username}
+                    userId={this.state.userId}
                   />
                 )
               }
