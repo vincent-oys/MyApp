@@ -34,6 +34,7 @@ class JournalEditForm extends React.Component {
       .put(url, body, { withCredentials: true })
       .then((res) => {
         console.log(res);
+        this.props.refreshJournal();
         this.props.history.push(`/journal/${journalId}`);
       })
       .catch((err) => {
