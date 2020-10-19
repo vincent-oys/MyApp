@@ -1,17 +1,14 @@
 import React from "react";
-import moment from "moment";
-import axios from "axios";
-import "./JournalContent.css";
 import JournalMenu from "../JournalMenu/JournalMenu";
+import axios from "axios";
 
-class JournalForm extends React.Component {
-  constructor() {
-    let today = moment(new Date()).format().substr(0, 10);
-    super();
+class JournalEditForm extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      title: "",
-      content: "",
-      date: today,
+      title: this.props.singleJournal.title,
+      content: this.props.singleJournal.content,
+      date: this.props.singleJournal.date,
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -26,26 +23,24 @@ class JournalForm extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
+    let journalId = this.props.singleJournal._id;
     const body = {
       title: this.state.title,
       content: this.state.content,
       date: this.state.date,
     };
-    let url = `/api/journal/${this.props.userId}/add`;
+    let url = `/api/journal/${journalId}/edit`;
     axios
-      .post(url, body, { withCredentials: true })
+      .put(url, body, { withCredentials: true })
       .then((res) => {
         console.log(res);
-        this.props.refreshJournal();
-        this.props.history.push("/journal");
+        this.props.history.push(`/journal/${journalId}`);
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
   render() {
-    let today = moment(new Date()).format().substr(0, 10);
     return (
       <div className="content-page">
         <div className="journal-menu">
@@ -53,7 +48,6 @@ class JournalForm extends React.Component {
         </div>
 
         <div className="journal-content">
-          <p>{this.props.userId}</p>
           <form onSubmit={this.submitHandler}>
             <div className="form-input">
               <label>Title:</label>
@@ -79,12 +73,12 @@ class JournalForm extends React.Component {
               <input
                 type="date"
                 name="date"
-                defaultValue={`${today}`}
+                defaultValue={this.state.date}
                 onChange={this.changeHandler}
                 required
               />
             </div>
-            <button type="submit">New Journal Entry</button>
+            <button type="submit">Save</button>
           </form>
         </div>
       </div>
@@ -92,4 +86,4 @@ class JournalForm extends React.Component {
   }
 }
 
-export default JournalForm;
+export default JournalEditForm;

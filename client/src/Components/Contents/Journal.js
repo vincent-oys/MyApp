@@ -1,36 +1,35 @@
 import React from "react";
-import "./Journal.css";
+import JournalCard from "../Journal/JournalCard/JournalCard";
+import "../Journal/JournalContent/JournalContent.css";
 import JournalMenu from "../Journal/JournalMenu/JournalMenu";
-import JournalForm from "../Journal/JournalContent/JournalForm";
-import JournalSummary from "../Journal/JournalContent/JournalSummary";
-import JournalView from "../Journal/JournalContent/JournalView";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Journal extends React.Component {
   constructor() {
     super();
   }
+
   render() {
-    return (
-      <Router>
-        <div className="content-page">
-          <Switch>
-            <div className="content-menu">
-              <JournalMenu />
-            </div>
-          </Switch>
-          <Switch>
-            <div className="content">
-              <p>{this.props.loggedInStatus}</p>
-              <p>{this.props.username}</p>
-              <p>{this.props.userId}</p>
-              <JournalForm />
-              <JournalSummary />
-              <JournalView />
-            </div>
-          </Switch>
+    let { journalData, userId } = this.props;
+    journalData = journalData.reverse();
+
+    let journals = journalData.map((data, index) => {
+      return (
+        <div key={index}>
+          <JournalCard data={data} />
         </div>
-      </Router>
+      );
+    });
+
+    return (
+      <div className="content-page">
+        <div className="journal-menu">
+          <JournalMenu userId={userId} />
+        </div>
+
+        <div className="journal-content">
+          <div>{journals}</div>
+        </div>
+      </div>
     );
   }
 }
