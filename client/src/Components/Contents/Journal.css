@@ -1,0 +1,17 @@
+.content-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
+}
+
+.content-menu {
+  border: 1px solid blue;
+  flex-grow: 1;
+}
+
+.content {
+  border: 1px solid red;
+  flex-grow: 6;
+}
