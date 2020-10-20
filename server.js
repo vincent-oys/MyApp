@@ -1,6 +1,6 @@
 const routes = require("./routes");
 const mongo = require("mongodb");
-const modelFuncs = require("./models/myapp");
+const modelFuncs = require("./models/myApp");
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
