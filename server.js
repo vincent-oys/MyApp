@@ -11,8 +11,6 @@ require("dotenv").config();
 
 // middleware
 
-app.use(express.static(path.join(__dirname, "client/build")));
-
 app.use(cookieParser());
 
 app.use(bodyParser.json());
@@ -38,6 +36,8 @@ myClient.connect((err, db) => {
   // set up routes
   routes(app, { modelFuncsObj });
 });
+
+app.use(express.static(path.join(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;
 
