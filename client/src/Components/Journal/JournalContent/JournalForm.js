@@ -26,10 +26,12 @@ class JournalForm extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
+    let picNumber = Math.floor(Math.random() * 100);
     const body = {
       title: this.state.title,
       content: this.state.content,
       date: this.state.date,
+      picNumber: picNumber,
     };
     let url = `/api/journal/${this.props.userId}/add`;
     axios
@@ -49,7 +51,10 @@ class JournalForm extends React.Component {
     return (
       <div className="content-page">
         <div className="journal-menu">
-          <JournalMenu userId={this.props.userId} />
+          <JournalMenu
+            history={this.props.history}
+            userId={this.props.userId}
+          />
         </div>
 
         <div className="journal-content">

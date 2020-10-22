@@ -17,4 +17,6 @@
   border: red solid 1px;
   position: relative;
   left: 0;
+  display: flex;
+  justify-content: center;
 }

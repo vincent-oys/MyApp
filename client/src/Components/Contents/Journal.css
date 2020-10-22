@@ -1,0 +1,21 @@
+#page-numbers {
+  list-style: none;
+  display: flex;
+  margin-top: 25px;
+  justify-content: center;
+}
+
+#page-numbers > li {
+  font-size: 20px;
+  color: navy;
+  user-select: none;
+  cursor: pointer;
+  padding: 15px 25px;
+}
+
+#page-numbers li:hover {
+  background-color: navy;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+}

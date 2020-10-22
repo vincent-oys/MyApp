@@ -16,7 +16,6 @@ class LoginContainer extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.props.loggedInStatus}</p>
         <Register handleSuccessfulAuth={this.handleSuccessfulAuth} />
         <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
       </div>
