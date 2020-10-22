@@ -1,5 +1,4 @@
 import React from "react";
-import JournalMenu from "../JournalMenu/JournalMenu";
 import axios from "axios";
 
 class JournalEditForm extends React.Component {
@@ -82,47 +81,52 @@ class JournalEditForm extends React.Component {
   render() {
     return (
       <div className="content-page">
-        <div className="journal-menu">
-          <JournalMenu
-            history={this.props.history}
-            userId={this.props.userId}
-          />
-        </div>
-
         <div className="journal-content">
           <form onSubmit={this.submitHandler}>
-            <div className="form-input">
-              <label>Title:</label>
+            <div className="journal-form-input">
+              <p>Title:</p>
               <input
                 type="text"
                 name="title"
                 value={this.state.title}
                 onChange={this.changeHandler}
                 required
+                className="form-title"
               />
             </div>
-            <div className="form-input">
-              <label>Content:</label>
-              <textarea
-                name="content"
-                value={this.state.content}
-                onChange={this.changeHandler}
-                required
-              />
-            </div>
-            <div className="form-input">
-              <label>Date:</label>
+            <div className="journal-form-input">
+              <p>Date:</p>
               <input
                 type="date"
                 name="date"
                 defaultValue={this.state.date}
                 onChange={this.changeHandler}
                 required
+                className="form-date"
               />
             </div>
-            <button type="submit">Save</button>
+            <div className="journal-form-input">
+              <p>Content:</p>
+              <textarea
+                name="content"
+                value={this.state.content}
+                onChange={this.changeHandler}
+                wrap="off"
+                required
+                className="form-content"
+              />
+            </div>
+            <div className="button-center">
+              <button type="submit" className="form-button">
+                Save
+              </button>
+            </div>
           </form>
-          <button onClick={this.deleteHandler}>Delete</button>
+          <div className="button-center">
+            <button onClick={this.deleteHandler} className="form-button-delete">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     );

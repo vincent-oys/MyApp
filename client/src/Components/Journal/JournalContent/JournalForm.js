@@ -2,7 +2,6 @@ import React from "react";
 import moment from "moment";
 import axios from "axios";
 import "./JournalContent.css";
-import JournalMenu from "../JournalMenu/JournalMenu";
 
 class JournalForm extends React.Component {
   constructor() {
@@ -50,46 +49,46 @@ class JournalForm extends React.Component {
     let today = moment(new Date()).format().substr(0, 10);
     return (
       <div className="content-page">
-        <div className="journal-menu">
-          <JournalMenu
-            history={this.props.history}
-            userId={this.props.userId}
-          />
-        </div>
-
         <div className="journal-content">
-          <p>{this.props.userId}</p>
           <form onSubmit={this.submitHandler}>
-            <div className="form-input">
-              <label>Title:</label>
+            <div className="journal-form-input">
+              <p>Title:</p>
               <input
                 type="text"
                 name="title"
                 value={this.state.title}
                 onChange={this.changeHandler}
                 required
+                className="form-title"
               />
             </div>
-            <div className="form-input">
-              <label>Content:</label>
-              <textarea
-                name="content"
-                value={this.state.content}
-                onChange={this.changeHandler}
-                required
-              />
-            </div>
-            <div className="form-input">
-              <label>Date:</label>
+            <div className="journal-form-input">
+              <p>Date:</p>
               <input
                 type="date"
                 name="date"
                 defaultValue={`${today}`}
                 onChange={this.changeHandler}
                 required
+                className="form-date"
               />
             </div>
-            <button type="submit">New Journal Entry</button>
+            <div className="journal-form-input">
+              <p>Content:</p>
+              <textarea
+                name="content"
+                value={this.state.content}
+                onChange={this.changeHandler}
+                wrap="off"
+                required
+                className="form-content"
+              />
+            </div>
+            <div className="button-center">
+              <button type="submit" className="form-button">
+                New Journal Entry
+              </button>
+            </div>
           </form>
         </div>
       </div>

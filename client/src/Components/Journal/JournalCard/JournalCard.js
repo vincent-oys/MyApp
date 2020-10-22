@@ -10,7 +10,7 @@ class JournalCard extends React.Component {
     let month = moment(date).format("MMM");
     let day = moment(date).format("Do");
     return (
-      <div className="row">
+      <div className="journal-row">
         <div className="journal-card">
           <div className="date">
             <span className="day">{day}</span>

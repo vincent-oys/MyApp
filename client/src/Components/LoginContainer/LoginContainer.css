@@ -3,18 +3,16 @@
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 900px;
-  height: 600px;
-  margin-top: 100px;
+  width: 100%;
+  height: 100%;
   background-image: url("../LoginContainer/image/Journal.jpg");
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
 }
 
 .auth-page {
-  width: 40%;
-  height: 80%;
+  width: 360px;
+  height: 480px;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border-radius: 10px;
@@ -57,6 +55,7 @@
   color: white;
   text-transform: uppercase;
   cursor: pointer;
+  outline: none;
 }
 
 .auth-page > p {

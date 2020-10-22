@@ -15,7 +15,7 @@
   font-weight: 300;
   color: darkgray;
 }
-.row {
+.journal-row {
   max-width: 900px;
   margin: 40px auto 0;
   border: lightgrey 1px solid;

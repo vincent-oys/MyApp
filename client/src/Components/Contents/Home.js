@@ -5,7 +5,7 @@ class Home extends React.Component {
   render() {
     let { text, author } = this.props.motivationalQuote;
     return (
-      <div>
+      <div className="landing-page">
         <div className="welcome">
           {this.props.loggedInStatus === "LOGGED_IN" ? (
             <h3>Welcome Back, {this.props.username}</h3>
