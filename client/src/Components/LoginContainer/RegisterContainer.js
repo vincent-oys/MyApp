@@ -1,9 +1,8 @@
 import React from "react";
+import Register from "./Register/Register";
 import { Link } from "react-router-dom";
-import Login from "./Login/Login";
-import "./LoginContainer.css";
 
-class LoginContainer extends React.Component {
+class RegisterContainer extends React.Component {
   constructor() {
     super();
 
@@ -18,11 +17,11 @@ class LoginContainer extends React.Component {
     return (
       <div className="auth-wrapper">
         <div className="auth-page">
-          <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+          <Register handleSuccessfulAuth={this.handleSuccessfulAuth} />
           <p>
-            Dont have an account?{"  "}
-            <Link to="/register" className="auth-link">
-              Signup Now
+            Already have an account?{"  "}
+            <Link to="/login" className="auth-link">
+              Login Now
             </Link>
           </p>
         </div>
@@ -31,4 +30,4 @@ class LoginContainer extends React.Component {
   }
 }
 
-export default LoginContainer;
+export default RegisterContainer;

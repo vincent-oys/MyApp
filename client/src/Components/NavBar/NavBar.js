@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MenuItems } from "./MenuItems";
+import "./NavBar.css";
 
 class NavBar extends React.Component {
   constructor() {
@@ -38,13 +39,26 @@ class NavBar extends React.Component {
             <h1>MyApp</h1>
           </div>
           <ul>
-            {menuItems}
+            {this.props.loggedInStatus === "LOGGED_IN" ? (
+              menuItems
+            ) : (
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            )}
+
             <li>
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   this.buttonOnClick();
                 }}
+                className="nav-auth"
+                style={
+                  this.props.loggedInStatus === "LOGGED_IN"
+                    ? { backgroundColor: "red" }
+                    : { backgroundColor: "lightgreen" }
+                }
               >
                 {buttonName}
               </button>

@@ -4,7 +4,7 @@ import Expense from "./Components/Contents/Expense";
 import Home from "./Components/Contents/Home";
 import Journal from "./Components/Contents/Journal";
 import LoginContainer from "./Components/LoginContainer/LoginContainer";
-import Test from "./Components/Test/Test";
+import RegisterContainer from "./Components/LoginContainer/RegisterContainer";
 import JournalForm from "./Components/Journal/JournalContent/JournalForm";
 import JournalEditForm from "./Components/Journal/JournalContent/JournalEditForm";
 import NavBar from "./Components/NavBar/NavBar";
@@ -24,12 +24,14 @@ class App extends React.Component {
       username: "",
       userId: "",
       journalData: [],
+      motivationalQuote: {},
     };
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.getJournal = this.getJournal.bind(this);
     this.refreshJournal = this.refreshJournal.bind(this);
+    this.getMotivationalQuotes = this.getMotivationalQuotes.bind(this);
   }
 
   checkLoginStatus() {
@@ -58,6 +60,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.checkLoginStatus();
+    this.getMotivationalQuotes();
   }
 
   handleLogin() {
@@ -97,6 +100,19 @@ class App extends React.Component {
       .catch((err) => console.log("err in getJournal", err));
   }
 
+  getMotivationalQuotes() {
+    axios
+      .get("https://type.fit/api/quotes")
+      .then((res) => {
+        let num = Math.floor(Math.random() * 100);
+        console.log(res);
+        this.setState({
+          motivationalQuote: res.data[num],
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
@@ -117,16 +133,14 @@ class App extends React.Component {
           <Switch>
             <Route
               exact
-              path="/test"
-              render={(props) => (
-                <Test {...props} loggedInStatus={this.state.loggedInStatus} />
-              )}
-            />
-            <Route
-              exact
               path="/"
               render={(props) => (
-                <Home {...props} loggedInStatus={this.state.loggedInStatus} />
+                <Home
+                  {...props}
+                  username={this.state.username}
+                  loggedInStatus={this.state.loggedInStatus}
+                  motivationalQuote={this.state.motivationalQuote}
+                />
               )}
             />
             <Route
@@ -177,28 +191,51 @@ class App extends React.Component {
             />
             <Route
               exact
+              path="/register"
+              render={(props) =>
+                this.state.loggedInStatus === "LOGGED_IN" ? (
+                  <Redirect to="/" />
+                ) : (
+                  <RegisterContainer
+                    {...props}
+                    loggedInStatus={this.state.loggedInStatus}
+                    handleLogin={this.handleLogin}
+                  />
+                )
+              }
+            />
+            <Route
+              exact
               path="/journal/:userid/create"
-              render={(props) => (
-                <JournalForm
-                  {...props}
-                  userId={this.state.userId}
-                  refreshJournal={this.refreshJournal}
-                />
-              )}
+              render={(props) =>
+                this.state.loggedInStatus === "NOT_LOGGED_IN" ? (
+                  <Redirect to="/" />
+                ) : (
+                  <JournalForm
+                    {...props}
+                    userId={this.state.userId}
+                    refreshJournal={this.refreshJournal}
+                  />
+                )
+              }
             />
             <Route
               exact
               path="/journal/:journalid/edit"
-              render={(props) => (
-                <JournalEditForm
-                  {...props}
-                  userId={this.state.userId}
-                  refreshJournal={this.refreshJournal}
-                />
-              )}
+              render={(props) =>
+                this.state.loggedInStatus === "NOT_LOGGED_IN" ? (
+                  <Redirect to="/" />
+                ) : (
+                  <JournalEditForm
+                    {...props}
+                    userId={this.state.userId}
+                    refreshJournal={this.refreshJournal}
+                  />
+                )
+              }
             />
 
-            {/* <Redirect from="*" to="/" /> */}
+            <Redirect from="*" to="/" />
           </Switch>
         </Router>
       </div>

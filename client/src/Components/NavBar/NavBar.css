@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+
+.nav-auth {
+  border: none;
+  padding: 10px 0;
+  width: 100px;
+  font-size: 18px;
+  margin-left: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-auth:hover {
+  transition: background-color 0.3s;
+}
+
+.logo {
+  font-family: "Merriweather", serif;
+}

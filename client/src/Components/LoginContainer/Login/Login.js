@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "../LoginContainer.css";
 
 class Login extends React.Component {
   constructor() {
@@ -49,9 +50,11 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="auth-form">
+        <h3>Login</h3>
         <form onSubmit={this.submitHandler}>
-          <div className="form-input">
+          <div className="auth-form-input">
+            <i className="material-icons">person_outline</i>
             <input
               type="text"
               name="username"
@@ -61,7 +64,8 @@ class Login extends React.Component {
               required
             />
           </div>
-          <div className="form-input">
+          <div className="auth-form-input">
+            <i className="material-icons">enhanced_encryption</i>
             <input
               type="password"
               name="password"
@@ -74,13 +78,18 @@ class Login extends React.Component {
           <div
             style={
               this.state.valid
-                ? { visibility: "hidden", margin: "10px 0" }
-                : { visibility: "visible", color: "red", margin: "10px 0" }
+                ? { visibility: "hidden", height: "15px" }
+                : {
+                    visibility: "visible",
+                    color: "red",
+                    height: "15px",
+                    textAlign: "center",
+                  }
             }
           >
             {this.state.errorMessage}
           </div>
-          <div className="form-input">
+          <div className="auth-form-input">
             <button type="submit">Login</button>
           </div>
         </form>

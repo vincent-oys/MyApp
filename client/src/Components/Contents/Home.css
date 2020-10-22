@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Special+Elite&display=swap");
+
+.quote {
+  color: #3f3f5a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+blockquote {
+  font-family: "Special Elite", cursive;
+  font-weight: 100;
+  font-size: 2rem;
+  max-width: 600px;
+  line-height: 1.4;
+  position: relative;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+blockquote:before,
+blockquote:after {
+  position: absolute;
+  color: #f1efe6;
+  font-size: 8rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+blockquote:before {
+  content: "“";
+  left: -5rem;
+  top: -2rem;
+}
+
+blockquote:after {
+  content: "”";
+  right: -5rem;
+  bottom: 1rem;
+}
+
+cite {
+  font-family: "Special Elite", cursive;
+  line-height: 3;
+  text-align: left;
+}
+
+.welcome {
+  font-family: "Playfair Display", serif;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  margin-top: 50px;
+  text-transform: capitalize;
+}
