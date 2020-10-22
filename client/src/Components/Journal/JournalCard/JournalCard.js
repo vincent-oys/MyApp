@@ -7,7 +7,7 @@ class JournalCard extends React.Component {
     return (
       <div>
         <p>
-          <Link to={`/journal/${_id}`}>{_id}</Link>
+          <Link to={`/journal/${_id}/edit`}>{_id}</Link>
         </p>
         <p>{title}</p>
         <p>{content}</p>

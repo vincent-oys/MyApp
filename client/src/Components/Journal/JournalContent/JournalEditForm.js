@@ -6,19 +6,42 @@ class JournalEditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.singleJournal.title,
-      content: this.props.singleJournal.content,
-      date: this.props.singleJournal.date,
+      title: "",
+      content: "",
+      date: "",
     };
 
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.getSingleJournal = this.getSingleJournal.bind(this);
+    this.deleteHandler = this.deleteHandler.bind(this);
   }
 
   changeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  }
+
+  getSingleJournal() {
+    let journalId = this.props.match.params.journalid;
+    let url = `/api/journal/${journalId}`;
+    console.log(journalId);
+    axios
+      .get(url, { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          title: res.data.title,
+          content: res.data.content,
+          date: res.data.date,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getSingleJournal();
   }
 
   submitHandler(e) {
@@ -41,6 +64,21 @@ class JournalEditForm extends React.Component {
         console.log(err);
       });
   }
+
+  deleteHandler(e) {
+    e.preventDefault();
+    let journalId = this.props.singleJournal._id;
+    let url = `/api/journal/${journalId}/delete`;
+    axios
+      .delete(url, { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        this.props.refreshJournal();
+        this.props.history.push("/journal");
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className="content-page">
@@ -81,6 +119,7 @@ class JournalEditForm extends React.Component {
             </div>
             <button type="submit">Save</button>
           </form>
+          <button onClick={this.deleteHandler}>Delete</button>
         </div>
       </div>
     );

@@ -6,7 +6,7 @@ class JournalMenu extends React.Component {
     return (
       <div>
         <li>
-          <Link to={`/journal/${this.props.userId}/create`}>Add a Journal</Link>
+          <Link to={`/journal/${this.props.userId}/create`}>Journal Entry</Link>
         </li>
       </div>
     );

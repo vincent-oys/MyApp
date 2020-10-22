@@ -6,7 +6,6 @@ import Journal from "./Components/Contents/Journal";
 import LoginContainer from "./Components/LoginContainer/LoginContainer";
 import Test from "./Components/Test/Test";
 import JournalForm from "./Components/Journal/JournalContent/JournalForm";
-import JournalView from "./Components/Journal/JournalContent/JournalView";
 import JournalEditForm from "./Components/Journal/JournalContent/JournalEditForm";
 import NavBar from "./Components/NavBar/NavBar";
 import {
@@ -25,14 +24,12 @@ class App extends React.Component {
       username: "",
       userId: "",
       journalData: [],
-      singleJournal: {},
     };
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.getJournal = this.getJournal.bind(this);
     this.refreshJournal = this.refreshJournal.bind(this);
-    this.getSingleJournal = this.getSingleJournal.bind(this);
   }
 
   checkLoginStatus() {
@@ -55,7 +52,6 @@ class App extends React.Component {
           username: "",
           userId: "",
           journalData: [],
-          singleJournal: {},
         });
       });
   }
@@ -82,7 +78,6 @@ class App extends React.Component {
           username: "",
           userId: "",
           journalData: [],
-          singleJournal: {},
         })
       )
       .catch((err) => console.log(err));
@@ -100,20 +95,6 @@ class App extends React.Component {
         });
       })
       .catch((err) => console.log("err in getJournal", err));
-  }
-
-  getSingleJournal(journalId) {
-    let url = `/api/journal/${journalId}`;
-    console.log(journalId);
-    axios
-      .get(url, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          singleJournal: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
   }
 
   render() {
@@ -201,19 +182,6 @@ class App extends React.Component {
                 <JournalForm
                   {...props}
                   userId={this.state.userId}
-                  refreshJournal={this.refreshJournal}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/journal/:journalid"
-              render={(props) => (
-                <JournalView
-                  {...props}
-                  userId={this.state.userId}
-                  getSingleJournal={this.getSingleJournal}
-                  singleJournal={this.state.singleJournal}
                   refreshJournal={this.refreshJournal}
                 />
               )}
