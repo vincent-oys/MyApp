@@ -23,13 +23,13 @@ class Journal extends React.Component {
 
   render() {
     let { journalData, userId } = this.props;
-    journalData = journalData.reverse();
+    let newJournalData = journalData.reverse();
 
     let { currentPage, journalPerPage } = this.state;
 
     const indexOfLast = currentPage * journalPerPage;
     const indexOfFirst = indexOfLast - journalPerPage;
-    const currentJournals = journalData.slice(indexOfFirst, indexOfLast);
+    const currentJournals = newJournalData.slice(indexOfFirst, indexOfLast);
 
     let journals = currentJournals.map((data, index) => {
       return (
@@ -40,7 +40,11 @@ class Journal extends React.Component {
     });
 
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(journalData.length / journalPerPage); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(newJournalData.length / journalPerPage);
+      i++
+    ) {
       pageNumbers.push(i);
     }
 
