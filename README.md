@@ -34,7 +34,7 @@ https://marvelapp.com/prototype/6c5hf2j
 
 #### Journal
 
-<img src="screenshots/journal_list.jpg"/>
+<img src="screenshots/journal_list.png"/>
 
 ## Further Development
 
