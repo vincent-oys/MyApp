@@ -46,7 +46,7 @@ class JournalEditForm extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
-    let journalId = this.props.singleJournal._id;
+    let journalId = this.props.match.params.journalid;
     const body = {
       title: this.state.title,
       content: this.state.content,
@@ -58,7 +58,7 @@ class JournalEditForm extends React.Component {
       .then((res) => {
         console.log(res);
         this.props.refreshJournal();
-        this.props.history.push(`/journal/${journalId}`);
+        this.props.history.push(`/journal`);
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +67,7 @@ class JournalEditForm extends React.Component {
 
   deleteHandler(e) {
     e.preventDefault();
-    let journalId = this.props.singleJournal._id;
+    let journalId = this.props.match.params.journalid;
     let url = `/api/journal/${journalId}/delete`;
     axios
       .delete(url, { withCredentials: true })
@@ -83,7 +83,10 @@ class JournalEditForm extends React.Component {
     return (
       <div className="content-page">
         <div className="journal-menu">
-          <JournalMenu userId={this.props.userId} />
+          <JournalMenu
+            history={this.props.history}
+            userId={this.props.userId}
+          />
         </div>
 
         <div className="journal-content">

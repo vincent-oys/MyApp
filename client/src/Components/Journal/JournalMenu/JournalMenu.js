@@ -1,13 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./JournalMenu.css";
 
 class JournalMenu extends React.Component {
   render() {
     return (
       <div>
-        <li>
-          <Link to={`/journal/${this.props.userId}/create`}>Journal Entry</Link>
-        </li>
+        <div
+          onClick={() => {
+            this.props.history.push(`/journal/${this.props.userId}/create`);
+          }}
+          className="journal-entry"
+        >
+          Journal Entry
+        </div>
       </div>
     );
   }

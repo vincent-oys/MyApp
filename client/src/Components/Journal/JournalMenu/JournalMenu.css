@@ -1,0 +1,17 @@
+.journal-entry {
+  border: 1px solid maroon;
+  color: maroon;
+  background-color: white;
+  padding: 20px 30px;
+  margin-top: 80px;
+  font-size: 20px;
+  border-radius: 30px;
+}
+
+.journal-entry:hover {
+  background-color: maroon;
+  color: white;
+  border-radius: 30px;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}

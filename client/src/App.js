@@ -193,8 +193,6 @@ class App extends React.Component {
                 <JournalEditForm
                   {...props}
                   userId={this.state.userId}
-                  getSingleJournal={this.getSingleJournal}
-                  singleJournal={this.state.singleJournal}
                   refreshJournal={this.refreshJournal}
                 />
               )}

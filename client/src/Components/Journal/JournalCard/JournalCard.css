@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.edit-icon {
+  text-decoration: none;
+  color: navy;
+}
+
+.edit-icon:hover {
+  color: red;
+  transition: color 0.3s;
+}
+
+.title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  color: darkgray;
+}
+.row {
+  max-width: 900px;
+  margin: 40px auto 0;
+  border: lightgrey 1px solid;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: turquoise;
+  color: white;
+  padding: 0.8em;
+  width: 80px;
+  height: 80px;
+}
+
+.date > span {
+  display: block;
+  text-align: center;
+}
+
+.day {
+  font-weight: 700;
+  font-size: 20px;
+}
+.month {
+  text-transform: uppercase;
+}
+
+.month,
+.year {
+  font-size: 13px;
+}
+
+.wrapper {
+  display: flex;
+  height: 250px;
+}
+.image {
+  width: 30%;
+  overflow: hidden;
+}
+
+.data {
+  width: 70%;
+  padding-left: 20px;
+}
+
+.title {
+  font-size: 30px;
+  margin: 10px auto;
+  text-transform: capitalize;
+}
+
+.text {
+  font-size: 18px;
+  margin: 10px auto;
+}
+
+.edit {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
