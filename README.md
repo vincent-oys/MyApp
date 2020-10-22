@@ -13,10 +13,10 @@ Wanted to have an app to consolidate all the routine activities.
 
 ## Technologies Used
 
-M - MongoDB
-E - Express
-R - React
-N - NodeJS
+- M - MongoDB
+- E - Express
+- R - React
+- N - NodeJS
 
 ## Wireframes
 
