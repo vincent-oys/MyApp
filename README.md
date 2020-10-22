@@ -32,9 +32,9 @@ https://marvelapp.com/prototype/6c5hf2j
 
 <img src="screenshots/login.png"/>
 
-#### Dashboard
+#### Journal
 
-<img src="screenshots/dashboard.jpg"/>
+<img src="screenshots/journal_list.jpg"/>
 
 ## Further Development
 
